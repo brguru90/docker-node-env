@@ -1,0 +1,25 @@
+networks:
+  dockernet:
+    external: true
+services:
+  ubuntu_os:
+    build:
+      args:
+        expose_port: '8888'
+      context: ./
+      dockerfile: Dockerfile
+    container_name: ubuntu_os
+    deploy:
+      resources:
+        limits:
+          cpus: 0.7
+          memory: 6G
+        reservations:
+          cpus: 0.25
+          memory: 1G
+    ports:
+      - 8888:8088
+    restart: always
+    volumes:
+      - ./data/:/host_mount/:rw
+version: '3.8'

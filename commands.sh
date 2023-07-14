@@ -1,0 +1,1 @@
+yarn create-next-app ./nextjs-practise-2023 --use-yarn --js --eslint --app --src-dir --no-tailwind --no-import-alias "@/*"
