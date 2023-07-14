@@ -6,6 +6,8 @@ services:
     build:
       args:
         expose_port: '8888'
+        arg_uid:  "${MY_UID}"
+        arg_gid:  "${MY_GID}"
       context: ./
       dockerfile: Dockerfile
     container_name: ubuntu_os
@@ -20,7 +22,8 @@ services:
     ports:
       - 8888:8088
     restart: always
-    user: "${MY_UID}:${MY_GID}"
+    user: "${MY_UID}"
     volumes:
       - ./data/:/host_mount/:rw
+      - ./entrypoint/:/entrypoint/
 version: '3.8'
