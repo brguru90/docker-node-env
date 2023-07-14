@@ -15,16 +15,16 @@ RUN npm -v
 RUN npm install -g yarn
 RUN npm i -g create-react-app
 RUN yarn add global create-next-app@latest
-
+RUN apt install acl sudo -y
 
 LABEL stage=ubuntu_module
-
 
 ARG expose_port
 
 
 EXPOSE ${expose_port}
 
+RUN chmod 777 -R /host_mount
 WORKDIR /host_mount
 
 CMD ["sleep","infinity"]

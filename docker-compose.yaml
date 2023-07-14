@@ -20,6 +20,7 @@ services:
     ports:
       - 8888:8088
     restart: always
+    user: "${MY_UID}:${MY_GID}"
     volumes:
       - ./data/:/host_mount/:rw
 version: '3.8'
