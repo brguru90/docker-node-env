@@ -26,12 +26,13 @@ services:
       resources:
         limits:
           cpus: 0.7
-          memory: 6G
+          memory: 4G
         reservations:
           cpus: 0.25
           memory: 1G
     ports:
       - 8888:8088
+      - 3000:3000
       - "8822:22"
     restart: always
     user: "${MY_UID}"
