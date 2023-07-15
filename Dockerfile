@@ -19,12 +19,13 @@ RUN echo "%sudo	ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "${arg_uid} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN echo "guru ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-
+RUN mkdir -p  ~/.ssh/
+RUN echo "RemoteCommand cd /host_mount && bash -l" >> ~/.ssh/config
 RUN service ssh start
 RUN update-rc.d ssh enable
 RUN apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install build-essential  -y
-RUN apt-get install wget curl iputils-ping -y
+RUN apt-get install wget curl iputils-ping vim -y
 
 # RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 guru
 RUN  echo 'guru:guru' | chpasswd
@@ -41,6 +42,8 @@ RUN mkdir -p /.npm && chown -R $arg_uid:0 /.npm
 
 
 USER guru
+
+RUN echo "cd /host_mount" >> ~/.bashrc
 
 RUN sudo npm i -g create-react-app create-next-app@latest
 # RUN apt install acl sudo -y
